@@ -1,0 +1,48 @@
+close all;
+clear;
+
+
+
+
+zeta = 0;
+omega_n = 1;
+
+numberOfIterations = 500;
+
+
+y=[];
+y() = 0;
+y(1)
+u = 1;
+h = .1;
+y_1 = zeros(1,500);
+y_2 = zeros(1,500);
+t = zeros(1,500);
+
+for i = 1 : numberOfIterations
+    t(i) = i*h;
+    y_next = RungeKutta(secondOrderResponse, y, h, u);
+    y_1(i)= y_next(1);
+    y_2(i)= y_next(2);
+end
+
+
+figure(1);
+plot(t,y_1);
+
+
+
+
+
+
+
+
+
+
+
+function y_next = secondOrderResponse(y, u)
+    y_next(1) = y(2);
+    y_next(2) = -(omega_n)^2 * y(1) - omega_n * y(2) + ((omega_n)^2 * u);
+end
+
+
