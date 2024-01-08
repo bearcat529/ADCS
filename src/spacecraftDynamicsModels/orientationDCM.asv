@@ -1,0 +1,3 @@
+function C_next = orientationDCM(omega,C,param)
+        C_next = -crossV(omega) * C;
+end

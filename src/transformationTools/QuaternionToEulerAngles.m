@@ -1,0 +1,26 @@
+%https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
+% 
+% function angles = QuaternionToEulerAngles(q) 
+%     angles = [atan2(2*(q(4)*q(1)+q(2)*q(3)),1-2*(q(1)^2+q(2)^2));...
+%               asin(2*(q(4)*q(2)-q(1)*q(3)));...
+%               atan2(2*(q(4)*q(3)+q(1)*q(2)),1-2*(q(2)^2+q(3)^2))] ;
+% end
+% 
+function angles = QuaternionToEulerAngles(q) 
+    angles = [atan2(2*(q(4)*q(1)+q(2)*q(3)),1-2*(q(1)^2+q(2)^2));...
+              -(pi/2) + 2*atan2(sqrt(1+2*(q(4)*q(2)-q(1)*q(3))),sqrt(1-2*(q(4)*q(2)-q(1)*q(3))));...
+              atan2(2*(q(4)*q(3)+q(1)*q(2)),1-2*(q(2)^2+q(3)^2))] ;
+
+
+
+
+if (sqrt(1+2*(q(4)*q(2)-q(1)*q(3)))>0 && sqrt(1-2*(q(4)*q(2)-q(1)*q(3))) <0)
+    angles(2)= (pi/2)-angles;
+end
+if (sqrt(1+2*(q(4)*q(2)-q(1)*q(3)))<0 && sqrt(1-2*(q(4)*q(2)-q(1)*q(3))) <0)
+    angles(2)= -(pi/2)-angles;
+end
+end
+
+
+

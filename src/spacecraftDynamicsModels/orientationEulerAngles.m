@@ -1,0 +1,6 @@
+function angles_dot = orientationEulerAngles(angles, u, omega)
+angles_dot = (1/cos(angles(2)))*[cos(angles(2)), sin(angles(1))*sin(angles(2)),  cos(angles(1))*sin(angles(2));...
+                                             0,                 cos(angles(1))*cos(angles(2)), -sin(angles(1))*cos(angles(2));...
+                                             0,                        sin(angles(1)),         cos(angles(1))] * omega';
+angles_dot = angles_dot';
+end
